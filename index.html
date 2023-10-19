@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Anniversary</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #FFD6E0, #FFB5D2);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 36px;
+            color: #ff69b4;
+            margin-top: 50px;
+        }
+        #imageContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            border: 4px solid #ff69b4;
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px #888888;
+            transition: transform 0.5s;
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .arrow {
+            font-size: 30px;
+            color: #ff69b4;
+            cursor: pointer;
+            padding: 50px;
+        }
+        .arrow:hover {
+            transform: scale(1.2);
+        }
+        .arrow-container {
+            display: flex;
+            align-items: center;
+        }
+        .animation-container {
+            animation: fadeIn 2s ease-in-out;
+        }
+        .message {
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            color: #ff69b4;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Anniversary, My Love!</h1>
+    <div class="animation-container" id="imageContainer">
+        <div class="arrow-container">
+            <div class="arrow" id="prev">&lt;</div>
+        </div>
+        <img id="currentImage">
+        <div class="arrow-container">
+            <div class="arrow" id="next">&gt;</div>
+        </div>
+    </div>
+    <div class="navigation">
+        <span id="currentIndex">1</span> / <span id="totalImages">7</span>
+    </div>
+    <div class="message">
+        You have been a true bundle of joy ever since I got to know you. You make my unhappy days that much more joyful and exciting, you are the gift that keeps on giving. I love you, thank you for blessing me by coming into my life Sumiya!
+    </div>
+
+    <script>
+        const images = [
+            'image1.jpg',
+            'image2.jpg',
+            'image3.jpg',
+            'image4.jpg',
+            'image5.jpg',
+            'image6.jpg',
+            'image7.jpg',
+            'image8.jpg'
+        ];
+
+        const currentImage = document.getElementById('currentImage');
+        const currentIndex = document.getElementById('currentIndex');
+        const totalImages = document.getElementById('totalImages');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let imageIndex = 0;
+
+        function updateImage() {
+            currentImage.src = images[imageIndex];
+            currentIndex.textContent = imageIndex + 1;
+        }
+
+        function navigateImage(direction) {
+            imageIndex += direction;
+            if (imageIndex < 0) {
+                imageIndex = images.length - 1;
+            }
+            if (imageIndex >= images.length) {
+                imageIndex = 0;
+            }
+            updateImage();
+        }
+
+        prevButton.addEventListener('click', () => navigateImage(-1));
+        nextButton.addEventListener('click', () => navigateImage(1));
+
+        totalImages.textContent = images.length;
+        updateImage();
+    </script>
+</body>
+</html>
